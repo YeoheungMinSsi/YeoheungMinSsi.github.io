@@ -19,6 +19,7 @@ h2{
 
     display: flex;
     justify-content: space-around;
+    font-size: 90px;
 }
 
 #member {
