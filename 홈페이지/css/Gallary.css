@@ -1,0 +1,69 @@
+body, html, * {margin: 0; padding: 0; box-sizing: border-box;}
+/* 모든 box가 사용자가 지정한 크기만큼 margin등이 지정된 크기안에서 지정된다 */
+
+.container {
+
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#page {
+
+
+    width: 1600px;
+    height: 1020px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+
+    font-size: 70px;
+    margin: 150px 0px 50px 0px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#img_box {
+
+    width: 1000px;
+    height: 800px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#img_box div {
+    
+    height: 600px;
+    flex: 1;
+    transition: all .5s;
+    
+}
+
+#img_box div:hover {
+
+    flex: 1.8; 
+    /* 마우스를 올리면 flex 즉 보이는 것이 1.8배가 된다. */
+}
+
+#img_box div:not(:hover) {
+
+    flex: 0.7; 
+    /* 마우스를 올려놓지 않은 이미지 flex 즉 보이는 것이 1.8배가 된다. */
+}
+
+
+
+#spring {background: url(../사진/KakaoTalk_20240420_172258142_12.jpg) no-repeat center / cover;}
+
+#summer {background: url(../사진/KakaoTalk_20240420_172258142_02.jpg) no-repeat center / cover;}
+
+#fall {background: url(../사진/KakaoTalk_20240420_172258142_06.jpg) no-repeat center / cover;}
+
+#winter {background: url(../사진/KakaoTalk_20240420_172258142_09.jpg) no-repeat center / cover;}
