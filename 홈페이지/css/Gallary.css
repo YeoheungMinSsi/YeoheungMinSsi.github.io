@@ -43,7 +43,7 @@ body, html, * {margin: 0; padding: 0; box-sizing: border-box;}
     height: 600px;
     flex: 1;
     transition: all .5s;
-    
+    background: ;
 }
 
 #img_box div:hover {
