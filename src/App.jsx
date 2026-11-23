@@ -155,6 +155,20 @@ export default function App() {
                 <h1 className="heading">{page.heading}</h1>
                 <p className="description">{page.description}</p>
 
+                {page.toc && (
+                  <ol className="toc-grid">
+                    {CHAPTERS.map((ch, idx) => (
+                      <li key={ch.id}>
+                        <button className="toc-item" onClick={() => goToChapter(idx)}>
+                          <span className="toc-num">{ch.number}</span>
+                          <span className="toc-title">{ch.title}</span>
+                          <span className="toc-pages">{ch.pages.length}p</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+
                 {page.tags && (
                   <ul className="tags">
                     {page.tags.map((tag) => (

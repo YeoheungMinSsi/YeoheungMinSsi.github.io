@@ -13,6 +13,12 @@ export const CHAPTERS = [
         tags: ['Frontend', 'UI Engineering', 'Web Performance'],
       },
       {
+        kicker: 'CHAPTER 01 · TABLE OF CONTENTS',
+        heading: '목차',
+        description: '원하는 챕터를 클릭하면 해당 섹션으로 바로 이동합니다.',
+        toc: true,
+      },
+      {
         kicker: 'CHAPTER 01 · HIGHLIGHTS',
         heading: '핵심 강점 요약',
         description:
