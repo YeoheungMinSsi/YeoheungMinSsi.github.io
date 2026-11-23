@@ -8,7 +8,7 @@ export default function App() {
   const [chapterIdx, setChapterIdx] = useState(0);
   const [pageIdx, setPageIdx] = useState(0);
   const lockRef = useRef(false);
-  const touchStartY = useRef(null);
+  const touchStart = useRef(null);
 
   const chapter = CHAPTERS[chapterIdx];
   const isLastPageInChapter = pageIdx === chapter.pages.length - 1;
@@ -77,15 +77,23 @@ export default function App() {
     };
 
     const onTouchStart = (e) => {
-      touchStartY.current = e.touches[0].clientY;
+      // Allow horizontal scrolling inside the top chapter nav without flipping pages
+      if (e.target.closest?.('.chapter-nav')) {
+        touchStart.current = null;
+        return;
+      }
+      const t = e.touches[0];
+      touchStart.current = { x: t.clientX, y: t.clientY };
     };
 
     const onTouchEnd = (e) => {
-      if (touchStartY.current === null) return;
-      const diff = touchStartY.current - e.changedTouches[0].clientY;
-      touchStartY.current = null;
-      if (Math.abs(diff) > 40) {
-        step(diff > 0 ? 1 : -1);
+      if (!touchStart.current) return;
+      const t = e.changedTouches[0];
+      const diffX = touchStart.current.x - t.clientX;
+      const diffY = touchStart.current.y - t.clientY;
+      touchStart.current = null;
+      if (Math.abs(diffY) > 40 && Math.abs(diffY) > Math.abs(diffX)) {
+        step(diffY > 0 ? 1 : -1);
       }
     };
 
@@ -142,7 +150,7 @@ export default function App() {
       <main
         key={chapter.id}
         className="chapter-track"
-        style={{ transform: `translate3d(0, -${pageIdx * 100}vh, 0)` }}
+        style={{ transform: `translate3d(0, calc(${pageIdx} * var(--vh) * -1), 0)` }}
       >
         {chapter.pages.map((page, idx) => {
           const isLastHere = idx === chapter.pages.length - 1;
